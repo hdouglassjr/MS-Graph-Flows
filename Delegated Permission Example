@@ -1,0 +1,12 @@
+sequenceDiagram title MS Graph Flow - Delegated Permission Example
+    actor U as User
+    participant A as Client App
+    participant M as Microsoft identity platform 
+    U->>+A: Call client app
+    A->>+M: (redirect URL) /authorize
+    Note right of M:Microsoft Entra ID signs the user in
+    M-->>-U: requests consent for permissions the app requests
+    U-->>M: user consent is given to delegate permissions to app
+    M->>+A:return an authorization code
+    Note right of M:app can redeem code at the Microsoft identity platform<br/>/token endpoint for an access token.
+    A->>+M:/token endpoint  
